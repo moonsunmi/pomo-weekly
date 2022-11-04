@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## <뽀모 위클리> 웹 페이지 만들기 프로젝트
+
+소개: 뽀모도로를 이용하여 공부하는 공간
+
+기능: 뽀모도로 타이머를 작동시키면, 알아서 공부 로그를 저장해 준다.
 
 ## Getting Started
 
