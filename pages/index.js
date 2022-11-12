@@ -2,12 +2,19 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import Logs from "../components/Logs";
+import States from "../components/States";
 import TimerContainer from "../components/TimerContainer";
 import styles from "../styles/Home.module.css";
 
+/* TODO
+logs의 start와 end는 Date 오브젝트로 관리하는 게 낫지 않을지?
+
+
+*/
+
 export default function Home() {
   let unitPomodori = 1;
-  const [logs, setLogs] = useState([{ id: 0, start: "", end: "" }]);
+  const [logs, setLogs] = useState([{ id: 0, start: "", end: "" }]); //
   const nextLogId = useRef(0);
 
   return (
@@ -27,6 +34,7 @@ export default function Home() {
           logs={logs}
           addLogs={setLogs}
         />
+        <States nextLogId={nextLogId} />
         <Logs logs={logs} />
       </main>
 

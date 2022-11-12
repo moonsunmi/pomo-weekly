@@ -1,4 +1,5 @@
 import next from "next";
+import PropTypes from "prop-types";
 import React from "react";
 import { useEffect, useState } from "react";
 
@@ -29,6 +30,12 @@ const Counter = ({ minutes, seconds, isCounting }) => {
       </div>{" "}
     </div>
   );
+};
+
+Counter.propTypes = {
+  minutes: PropTypes.number,
+  seconds: PropTypes.number,
+  isCounting: PropTypes.bool,
 };
 
 export default Counter;
