@@ -1,3 +1,5 @@
+import React from "react";
+
 const State = ({ stateName, stateNumber }) => {
   return (
     <div className="flex p-1">
@@ -9,4 +11,4 @@ const State = ({ stateName, stateNumber }) => {
   );
 };
 
-export default State;
+export default React.memo(State);

@@ -1,9 +1,12 @@
 import next from "next";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
+import { isCountingContext } from "./TimerContainer";
 
-const Counter = ({ minutes, seconds, isCounting }) => {
+const Counter = ({ minutes, seconds, setIsCounting }) => {
+  const isCounting = useContext(isCountingContext);
+
   let initPomodori = minutes * 60 + seconds;
   const [countdownNumber, setCountdownNumber] = useState(initPomodori);
 
