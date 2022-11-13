@@ -18,20 +18,23 @@ const StartStopButton = ({
     // start는 로그 자체를 추가하고, end는 마지막 로그에 값만 추가하는 것이다.
     let timeRecord = getTimeRecord(now);
     nextLogId.current += 1;
-    addLogs([...logs, { id: nextLogId.current, start: timeRecord, end: "" }]); // end 넣을 필요가 있을까?
-    setIsCounting(true);
+    addLogs((logs) => [
+      ...logs,
+      { id: nextLogId.current, start: timeRecord, end: "" },
+    ]); // end 넣을 필요가 있을까?
+    setIsCounting((prevState) => !prevState);
   };
 
   const stopTimer = () => {
     // start는 로그 자체를 추가하고, end는 마지막 로그에 값만 추가하는 것이다.
     console.log(logs);
     let timeRecord = getTimeRecord(now);
-    addLogs(
+    addLogs((logs) =>
       logs.map((log) =>
         log.id == nextLogId.current ? { ...log, end: timeRecord } : log
       )
     );
-    setIsCounting(false);
+    setIsCounting((prevState) => !prevState);
   };
 
   if (isCounting) {

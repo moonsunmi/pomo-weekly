@@ -13,10 +13,10 @@ const Counter = ({ minutes, seconds, isCounting }) => {
         if (countdownNumber <= 0) {
           // countdown 끝
           setCountdownNumber(initPomodori);
-          setIsCounting(false);
+          setIsCounting((prevState) => !prevState);
           clearInterval(interval);
         } else {
-          setCountdownNumber(countdownNumber - 1);
+          setCountdownNumber((prevCount) => prevCount - 1); // useState가
         }
       }, 1000);
       return () => clearInterval(interval);

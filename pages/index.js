@@ -25,8 +25,8 @@ export default function Home() {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <p className="font-NotoSansKorea text-3xl">뽀모 프로젝트</p>
-        <p className="font-NotoSansMono text-3xl">뽀모 프로젝트</p>
+        <p className="font-NotoSansKorea text-xl">뽀모 프로젝트</p>
+        <p className="font-NotoSansMono text-xl">뽀모 프로젝트</p>
         <TimerContainer
           minutes={unitPomodori}
           seconds={0}
