@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 
 const Schedule = ({ age }) => {
+  const [count, setCount] = useState(0);
+
   return <div>{age}</div>;
 };
 
