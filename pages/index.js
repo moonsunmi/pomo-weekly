@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import Excution from "./components/Excution";
+import Excution from "./components/run/Excution";
 
 /* TODO
 timetimeLogs의 start와 end는 Date 오브젝트로 관리하는 게 낫지 않을지?

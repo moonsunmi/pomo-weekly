@@ -1,6 +1,6 @@
 import TimeLog from "./TimeLog";
 import { useContext } from "react";
-import { timeLogsContext } from "../_app";
+import { timeLogsContext } from "../../_app";
 
 const TimeLogs = () => {
   const timeLogs = useContext(timeLogsContext);

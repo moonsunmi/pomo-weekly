@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { timeLogsContext } from "../_app";
-import Schedule from "./Schedule";
+import { timeLogsContext } from "../../_app";
+import Schedule from "../Schedule";
 
 const Reservation = () => {
   const testLogs = useContext(timeLogsContext);

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { timeLogsContext } from "../_app";
-import { nextLogIdContext } from "../_app";
+import { timeLogsContext } from "../../_app";
+import { nextLogIdContext } from "../../_app";
 import { isCountingContext } from "./TimerContainer";
 import { PropTypes } from "prop-types";
 

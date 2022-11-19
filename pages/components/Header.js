@@ -24,7 +24,7 @@ const Header = () => {
       </p>
       <p
         className=" cursor-pointer"
-        onClick={() => handleClick(event, "components/Reservation")}
+        onClick={() => handleClick(event, "components/reservation/Reservation")}
       >
         <PlusIcon className=" border-2 border-lime-600 bg-lime-300 rounded-full text-lime-600 h-7  content-center align-middle m-1 mx-4 shadow-md font-bold" />
       </p>
