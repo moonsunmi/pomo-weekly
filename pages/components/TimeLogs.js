@@ -1,7 +1,6 @@
 import TimeLog from "./TimeLog";
-import PropTypes from "prop-types";
 import { useContext } from "react";
-import { timeLogsContext } from "../pages";
+import { timeLogsContext } from "../_app";
 
 const TimeLogs = () => {
   const timeLogs = useContext(timeLogsContext);
@@ -16,14 +15,6 @@ const TimeLogs = () => {
       </div>
     </div>
   );
-};
-
-TimeLogs.propTypes = {
-  timeLogs: PropTypes.shape({
-    id: PropTypes.number,
-    start: PropTypes.string,
-    end: PropTypes.string,
-  }),
 };
 
 export default TimeLogs;

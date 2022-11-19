@@ -1,7 +1,7 @@
-import React, { useContext, useReducer, useState } from "react";
-import { nextLogIdContext, timeLogsContext } from "../pages";
+import React, { useState } from "react";
 import Counter from "./Counter";
 import StartStopButton from "./StartStopButton";
+import { PropTypes } from "prop-types";
 
 const initialState = {
   isCounting: false,
@@ -15,14 +15,12 @@ const reducer = (state, action) => {
 
 export const isCountingContext = React.createContext(false);
 
-const TimerContainer = ({ minutes, seconds, addtimeLogs }) => {
+const TimerContainer = ({ minutes, seconds, setTimeLogs }) => {
   // 분과 초를 따로 관리하는 게 나을 수도 있겠다.
   const [isCounting, setIsCounting] = useState(false);
 
-  const nextLogId = useContext(nextLogIdContext);
-
   return (
-    <div className=" shadow-lg bg-yellow-100 text-yellow-600  text-lg items-center w-64 rounded-lg border border-yellow-600 p-3	">
+    <div className="mainContainer">
       <div className=" border-yellow-600">리액트 프로그래밍 공부</div>
       <div className="border-t border-yellow-600">
         <isCountingContext.Provider value={isCounting}>
@@ -32,14 +30,19 @@ const TimerContainer = ({ minutes, seconds, addtimeLogs }) => {
             setIsCounting={setIsCounting}
           />
           <StartStopButton
-            nextLogId={nextLogId}
-            addtimeLogs={addtimeLogs}
+            setTimeLogs={setTimeLogs}
             setIsCounting={setIsCounting}
           />
         </isCountingContext.Provider>
       </div>
     </div>
   );
+};
+
+TimerContainer.propTypes = {
+  minutes: PropTypes.number,
+  seconds: PropTypes.number,
+  setTimeLogs: PropTypes.func, // { id: 0, start: "", end: "" } 형태의 매개변수, { id: 0, start: "", end: "" } 형태의 반환값
 };
 
 export default TimerContainer;
