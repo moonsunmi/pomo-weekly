@@ -4,8 +4,9 @@ import { timeLogsContext } from "../../_app";
 
 const TimeLogs = () => {
   const timeLogs = useContext(timeLogsContext);
+  console.log("timeLogs: ", timeLogs);
   return (
-    <div className="w-96 m-3">
+    <div>
       <p className=" text-lg ">timeLogs</p>
       <div>
         {timeLogs.map(

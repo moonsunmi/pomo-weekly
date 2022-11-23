@@ -4,7 +4,7 @@ const State = ({ stateName, stateNumber }) => {
   return (
     <div className="flex p-1">
       <div>{stateName}</div>
-      <div className=" mx-2 px-1 w-auto h-5 rounded-full bg-yellow-600 text-white">
+      <div className=" bg-yellow-600 text-white rounded-full mx-2 p-1">
         {stateNumber}
       </div>
     </div>

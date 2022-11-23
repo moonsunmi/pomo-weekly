@@ -9,6 +9,9 @@
     @apply p-2 font-semibold text-xl items-center rounded-md shadow-md text-center text-lime-700 border bg-lime-200 border-lime-700 cursor-pointer;
   }
   .mainContainer {
-    @apply shadow-lg  bg-yellow-100 text-yellow-600  text-lg items-center w-72 rounded-lg border border-yellow-600 p-3;
+    @apply shadow-lg  bg-yellow-100 text-yellow-600  text-lg items-center rounded-lg border border-yellow-600 p-3;
+  }
+  .logContainer {
+    @apply bg-slate-100 text-slate-600 text-xs p-1 my-1 border w-80 border-slate-300 rounded-md;
   }
 }

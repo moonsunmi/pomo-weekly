@@ -42,7 +42,7 @@ const TimerContainer = ({ minutes, seconds, setTimeLogs }) => {
 TimerContainer.propTypes = {
   minutes: PropTypes.number,
   seconds: PropTypes.number,
-  setTimeLogs: PropTypes.func, // { id: 0, start: "", end: "" } 형태의 매개변수, { id: 0, start: "", end: "" } 형태의 반환값
+  setTimeLogs: PropTypes.func, // { id: 0, start: Date(), end: Date() } 형태의 매개변수, { id: 0, start: Date(), end: Date() } 형태의 반환값
 };
 
 export default TimerContainer;
