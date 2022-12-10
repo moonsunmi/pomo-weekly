@@ -3,6 +3,8 @@ import "../styles/globals.css";
 import useTasks from "./components/common/hooks/useTasks";
 import Header from "./components/Header";
 import TestingRrule from "./components/common/TestingRrule";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/theme";
 
 export const timeLogsContext = React.createContext(null);
 export const nextLogIdContext = React.createContext(0);
@@ -18,7 +20,6 @@ function MyApp({ Component, pageProps }) {
       taskName: "샘플 테스크",
       category: "샘플 카테고리",
       date: "샘플 데이트",
-      time: "샘플 타임",
     },
   ]);
 
@@ -29,14 +30,16 @@ function MyApp({ Component, pageProps }) {
       <timeLogsContext.Provider value={timeLogs}>
         <nextLogIdContext.Provider value={nextLogId}>
           <tasksContext.Provider value={tasks}>
-            <Header />
-            <TestingRrule />
+            <ThemeProvider theme={theme}>
+              <Header />
+              <TestingRrule />
 
-            <Component
-              {...pageProps}
-              unitPomodori={unitPomodori}
-              setTimeLogs={setTimeLogs}
-            />
+              <Component
+                {...pageProps}
+                unitPomodori={unitPomodori}
+                setTimeLogs={setTimeLogs}
+              />
+            </ThemeProvider>
           </tasksContext.Provider>
         </nextLogIdContext.Provider>
       </timeLogsContext.Provider>

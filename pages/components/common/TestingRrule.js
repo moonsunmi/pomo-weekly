@@ -9,13 +9,13 @@ const TestingRrule = () => {
   });
   const dates = rule.all();
 
-  console.log(dates);
+  //console.log(dates);
 
   return (
     <div>
       TestringRrule.js
-      {dates.map((date) => (
-        <span>{date.getUTCMonth()}</span>
+      {dates.map((date, index) => (
+        <span key={index}>{date.getUTCMonth()}</span>
       ))}
     </div>
   );

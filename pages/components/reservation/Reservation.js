@@ -1,60 +1,84 @@
-import React, { useContext, useState } from "react";
-import { tasksContext, timeLogsContext } from "../../_app";
+import { useState } from "react";
 import useInputs from "../common/hooks/useInputs";
 import useSelectOptions from "../common/hooks/useSelectOptions";
-import useTasks from "../common/hooks/useTasks";
-import Schedule from "./Schedule";
+import { Container, ContainerTitle } from "../../../styles/Container.styles";
+import Input from "../../../styles/Input.styles";
+import { DateInput } from "../../../styles/Reservation.styles";
+import { ButtonContainer } from "../../../styles/Button.styles";
 
-const categoryOptions = [
-  { value: "banana", text: "banana" },
-  { value: "kiwi", text: "kiwi" },
-  { value: "tomato", text: "tomato" },
-];
+const today = new Date();
+const dateToString_yyyy_MM_dd = (date) => {
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+};
 
 const Reservation = () => {
-  // -------------------- <input> ----------------------
-  const [selectedCategory, onChangeOption, resetOption] =
+  // -------------------- <input type: "select">----------------------
+  const categoryOptions = [
+    { value: "banana", text: "banana" },
+    { value: "kiwi", text: "kiwi" },
+    { value: "tomato", text: "tomato" },
+  ];
+  const [selectedCategory, handleChangeOption, resetOption] =
     useSelectOptions(categoryOptions);
 
-  const [{ taskName, date }, onChangeInput, resetInput] = useInputs();
+  // -------------------- <input type: "checkbox">----------------------
+  const [weekPeriod, setWeekPeriod] = useState([
+    { name: "Mon", label: "월", isChecked: true },
+    { name: "Tue", label: "화", isChecked: false },
+    { name: "Wed", label: "수", isChecked: false },
+    { name: "Thu", label: "목", isChecked: false },
+    { name: "Fri", label: "금", isChecked: false },
+    { name: "Sat", label: "토", isChecked: false },
+    { name: "Sun", label: "일", isChecked: false },
+  ]); // fill({seleced: false})가 되어야 할 수도.
+  //const [selectedWeek, handleChangeCheckbox, resetChangeCheckbox]
+
+  // -------------------- <input type: the others>----------------------
+  const [
+    { taskName, pomodoriNumber, startDate, stopDate },
+    handleChangeInput,
+    handleResetInput,
+  ] = useInputs({
+    taskName: "",
+    pomodoriNumber: "",
+    startDate: dateToString_yyyy_MM_dd(today),
+    stopDate: dateToString_yyyy_MM_dd(today),
+  });
+
+  const onSubmit = () => {
+    // add reservation
+    console.log("예약이 완료되었습니다.");
+  };
 
   /*
-  // -------------------- Schdule ----------------------
-  const testLogs = useContext(timeLogsContext); //<???
-  const [age, setAge] = useState(18); // for test. must be deleted.
 
-  const initialTasks = useContext(tasksContext);
-  const [tasks, addTask] = useTasks(initialTasks); // {taskName: "샘플 테스크", category: "샘플 카테고리", date: "샘플 데이트", time: "샘플 타임"},
 
-  console.log(tasks);
-  //const [task, setTask] = useState({});
-
-  const onAddTask = () => {
-    addTask({
-      taskName: { taskName },
-      category: { selectedCategory },
-      date: { date },
-      time: { time },
-    });
-    resetInput();
-    resetOption();
-  };
-*/
+  */
   return (
-    <div className="flex flex-col items-center">
-      <div className="mainContainer ">
-        {/* 하단의 input들을 컴포넌트로 만들어야 할까? */}
-        <input
-          className="border border-yellow-400 mb-2 bg-yellow-50"
+    <form onSubmit={onSubmit}>
+      <Container>
+        <ContainerTitle>뽀모도로 예약하기</ContainerTitle>
+        <Input
+          //{...register("taskName", { required: true })}
           name="taskName"
           placeholder="Task Name"
           value={taskName}
-          onChange={onChangeInput}
+          onChange={handleChangeInput}
+        />
+        <Input
+          //{...register("phomodoriNumber", { required: true, min: 0, max: 48 })}
+          name="pomodoriNumber"
+          type="number"
+          min="1"
+          placeholder="1~48"
+          onChange={handleChangeInput}
+          value={pomodoriNumber}
         />
         <select
+          //{...register("category")}
           name="category"
           value={selectedCategory}
-          onChange={onChangeOption}
+          onChange={handleChangeOption}
         >
           {categoryOptions.map((option) => (
             <option value={option.value} key={option.value}>
@@ -62,29 +86,45 @@ const Reservation = () => {
             </option>
           ))}
         </select>
-        <input
-          className="border border-yellow-400  bg-yellow-50  mb-2"
+        <fieldset className="items-center text-sm align-middle mb-3 flex justify-between">
+          <legend style={{ textAlign: "center" }}>반복</legend>
+          {weekPeriod.map((weekday, index) => (
+            <span style={{ marginRight: 3 }} key={index}>
+              <input
+                id="weekPeriod"
+                //key={index}
+                name="weekPeriod"
+                type="checkbox"
+                checked={weekday.isChecked}
+                //onChange={handleChangeWeek} // <--- 구현 아직 안 됨.
+              />
+              <label>{weekday.label}</label>
+            </span>
+          ))}
+        </fieldset>
+        <label>시작일:</label>
+        <DateInput
           name="date"
           type="date"
           id="startDate"
-          value={date}
-          onChange={onChangeInput}
+          value={startDate}
+          onChange={handleChangeInput}
         />
-        {/*
-        <input
-          className="border border-yellow-400  bg-yellow-50  mb-2"
-          name="time"
-          type="time"
-          value={time}
-          onChange={onChangeInput}
+        <br />
+        <label>종료일:</label>
+        <DateInput
+          name="date"
+          type="date"
+          id="stopDate"
+          value={stopDate}
+          onChange={handleChangeInput}
         />
-        */}
-        <button className="button w-60" onClick={resetInput}>
-          뽀모도로 예약
-        </button>
-      </div>
-      <hr />
-    </div>
+
+        <ButtonContainer>
+          <input type="submit" value={"뽀모도리 예약"} onClick={onSubmit} />
+        </ButtonContainer>
+      </Container>
+    </form>
   );
 };
 

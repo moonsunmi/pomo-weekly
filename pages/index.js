@@ -21,7 +21,6 @@ export default function Home({ unitPomodori, setTimeLogs }) {
           setTimeLogs={setTimeLogs}
         />
       </main>
-
       <footer className="flex h-24 w-full items-center justify-center border-t"></footer>
     </div>
   );

@@ -1,8 +1,9 @@
 import React from "react";
-import States from "./States";
+import Reports from "./Reports";
 import PropTypes from "prop-types";
 import TimeLogs from "../log/TimeLogs";
 import TimerContainer from "./TimerContainer";
+import { Container } from "../../../styles/Container.styles";
 
 const Excution = ({ minutes, seconds, setTimeLogs }) => {
   return (
@@ -12,7 +13,7 @@ const Excution = ({ minutes, seconds, setTimeLogs }) => {
         seconds={seconds}
         setTimeLogs={setTimeLogs}
       />
-      <States />
+      <Reports />
 
       <TimeLogs />
     </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Counter from "./Counter";
 import StartStopButton from "./StartStopButton";
 import { PropTypes } from "prop-types";
+import { Container, ContainerTitle } from "../../../styles/Container.styles";
 
 const initialState = {
   isCounting: false,
@@ -20,22 +21,21 @@ const TimerContainer = ({ minutes, seconds, setTimeLogs }) => {
   const [isCounting, setIsCounting] = useState(false);
 
   return (
-    <div className="mainContainer">
-      <div className=" border-yellow-600">리액트 프로그래밍 공부</div>
-      <div className="border-t border-yellow-600">
-        <isCountingContext.Provider value={isCounting}>
-          <Counter
-            minutes={minutes}
-            seconds={seconds}
-            setIsCounting={setIsCounting}
-          />
-          <StartStopButton
-            setTimeLogs={setTimeLogs}
-            setIsCounting={setIsCounting}
-          />
-        </isCountingContext.Provider>
-      </div>
-    </div>
+    <Container>
+      <ContainerTitle>리액트 프로그래밍 공부</ContainerTitle>
+
+      <isCountingContext.Provider value={isCounting}>
+        <Counter
+          minutes={minutes}
+          seconds={seconds}
+          setIsCounting={setIsCounting}
+        />
+        <StartStopButton
+          setTimeLogs={setTimeLogs}
+          setIsCounting={setIsCounting}
+        />
+      </isCountingContext.Provider>
+    </Container>
   );
 };
 

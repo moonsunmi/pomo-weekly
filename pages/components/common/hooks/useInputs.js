@@ -1,75 +1,31 @@
 import React, { useCallback, useReducer, useState } from "react";
-import { PropTypes } from "prop-types";
-
-const today = new Date();
-
-const dateToString_yyyy_MM_dd = (date) => {
-  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-};
-
-/*
-const timeToString_mm_ss = (date) => {
-  return `${date.getHours()}:${date.getMinutes()}`;
-};
-*/
-
-const initialInput = {
-  taskName: "",
-  date: dateToString_yyyy_MM_dd(today),
-  //time: timeToString_mm_ss(today),
-};
 
 function inputReducer(state, action) {
   switch (action.type) {
     case "CHANGE": // type, name, value
       return { ...state, [action.name]: action.value };
     case "RESET":
-      return { ...initialInput };
+      return { ...action.initialInput };
     default:
       return new Error(`Not Handled Action Type ${action.type}`);
   }
 }
 
-const useInputs = () => {
+const useInputs = (initialInput) => {
+  // input에서 받을 인풋과 아웃풋을 생각해 보자.
+
   const [inputs, dispatch] = useReducer(inputReducer, initialInput);
 
-  const onChangeInput = useCallback((e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     dispatch({ type: "CHANGE", name, value });
   }, []);
 
-  const resetInput = useCallback(() => {
-    dispatch({ type: "RESET" });
-  }, []);
+  const handleReset = useCallback(() => {
+    dispatch({ type: "RESET", initialInput });
+  }, [initialInput]);
 
-  console.log(inputs);
-  return [inputs, onChangeInput, resetInput];
-};
-
-/*
-....Reducer로 만드는 중...
-const useInputs = (initialState) => {
-  const [inputs, setInputs] = useState(initialState);
-
-  const onChange = useCallback((e) => {
-    const { name, value } = e.target;
-    setInputs((inputs) => ({ ...inputs, [name]: value }));
-  }, []);
-
-  const reset = useCallback(() => {
-    setInputs(initialState);
-  }, [initialState]);
-
-  return [inputs, onChange, reset];
-};
-
-*/
-
-useInputs.propTypes = {
-  initialState: PropTypes.shape({
-    taskName: PropTypes.string,
-    date: PropTypes.Date,
-  }),
+  return [inputs, handleChange, handleReset];
 };
 
 export default useInputs;
